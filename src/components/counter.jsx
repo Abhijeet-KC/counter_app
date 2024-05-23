@@ -4,7 +4,7 @@ class Counter extends Component {
     state = {
         count: 0,
         imageUrl: 'https://picsum.photos/200',
-        tag: ['tag1', 'tag2', 'tag3']
+        tag: ['stay delusional', 'stay fit', 'stay hard', 'stay hungry', 'stay foolish']
     };
     
     style = { 
