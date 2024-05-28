@@ -4,7 +4,8 @@ class Counter extends Component {
     state = {
         value: this.props.counter.value,
         imageUrl: `https://picsum.photos/200/200?random=${this.props.counter.id}`,
-        tag: ['stay delusional', 'stay fit', 'stay hard', 'stay hungry', 'stay foolish']
+        tag: ['stay delusional', 'stay fit', 'stay hard', 'stay hungry', 'stay foolish'],
+        allowNegative: false
     };
     
     style = { 
@@ -21,7 +22,12 @@ class Counter extends Component {
     };
 
     handleDecrement = x => {
+        if (this.state.value > 0 || this.state.allowNegative)
         this.setState ({value: this.state.value - 1});
+    };
+
+    toggleAllowNegative = () => {
+        this.setState({allowNegative: !this.state.allowNegative})
     };
 
     render() {  
@@ -30,13 +36,21 @@ class Counter extends Component {
         <img style = {this.style} src={this.state.imageUrl} className = "border-2 border-dark rounded-circle" alt=""/>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button 
-        onClick={() => this.handleIncrement({value: this.state.value + 1})}
+        onClick={this.handleIncrement}
         className="btn btn-success btn-sm"
         >Increment</button>
         <button 
-        onClick={ () => this.handleDecrement(this.state.value === 0 ? (<p>Cant decrease anymore</p>) : {value: this.state.value - 1})}
-        className="btn-dark btn-sm m-2">Decrement</button>
-        <button onClick = {() => this.props.onDelete(this.props.counter.id)} className="btn-danger btn-sm">Delete</button>
+        onClick={this.handleDecrement}
+        className="btn-dark btn-sm m-2"
+        disabled={this.state.value === 0  && !this.state.allowNegative ? 'disabled' : ''}
+        >Decrement</button>
+        <button onClick = {() => this.props.onDelete(this.props.counter.id)} className="btn-danger btn-sm mr-2">Delete</button>
+        <input
+            type = "checkbox"
+            onChange = {this.toggleAllowNegative}
+            checked = {this.state.allowNegative}
+        />
+        Allow Negative Count
         <ul>
             {this.state.tag.map(tag => <li key = {tag}>{tag}</li>)}
         </ul>
