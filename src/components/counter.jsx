@@ -3,7 +3,7 @@ class Counter extends Component {
 
     state = {
         value: this.props.value,
-        imageUrl: 'https://picsum.photos/200',
+        imageUrl: `https://picsum.photos/200/200?random=${this.props.counter.id}`,
         tag: ['stay delusional', 'stay fit', 'stay hard', 'stay hungry', 'stay foolish']
     };
     
@@ -17,7 +17,7 @@ class Counter extends Component {
 
     handleIncrement = product => {
         console.log(product);
-        this.setState({value: this.state.value + 1});
+        this.setState({value: this.state.counter.value + 1});
     };
 
     handleDecrement = x => {
@@ -36,7 +36,7 @@ class Counter extends Component {
         <button 
         onClick={ () => this.handleDecrement(this.state.value === 0 ? (<p>Cant decrease anymore</p>) : {value: this.state.value - 1})}
         className="btn-dark btn-sm m-2">Decrement</button>
-        <button onClick = {() => this.props.onDelete(this.props.id)} className="btn-danger btn-sm">Delete</button>
+        <button onClick = {() => this.props.onDelete(this.props.counter.id)} className="btn-danger btn-sm">Delete</button>
         <ul>
             {this.state.tag.map(tag => <li key = {tag}>{tag}</li>)}
         </ul>
