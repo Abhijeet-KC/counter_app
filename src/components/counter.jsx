@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 class Counter extends Component {
 
     state = {
-        value: this.props.value,
+        value: this.props.counter.value,
         imageUrl: `https://picsum.photos/200/200?random=${this.props.counter.id}`,
         tag: ['stay delusional', 'stay fit', 'stay hard', 'stay hungry', 'stay foolish']
     };
@@ -17,7 +17,7 @@ class Counter extends Component {
 
     handleIncrement = product => {
         console.log(product);
-        this.setState({value: this.state.counter.value + 1});
+        this.setState({value: this.state.value + 1});
     };
 
     handleDecrement = x => {
