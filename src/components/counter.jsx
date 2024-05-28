@@ -31,11 +31,12 @@ class Counter extends Component {
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button 
         onClick={() => this.handleIncrement({value: this.state.value + 1})}
-        className="btn btn-dark btn-sm"
+        className="btn btn-success btn-sm"
         >Increment</button>
         <button 
-        onClick={ () => this.handleDecrement(this.state.value === 0 ? <p>Cant decrease anymore</p> : {value: this.state.value - 1})}
-        className="btn-danger btn-sm m-2">Decrement</button>
+        onClick={ () => this.handleDecrement(this.state.value === 0 ? (<p>Cant decrease anymore</p>) : {value: this.state.value - 1})}
+        className="btn-dark btn-sm m-2">Decrement</button>
+        <button onClick = {this.props.onDelete} className="btn-danger btn-sm">Delete</button>
         <ul>
             {this.state.tag.map(tag => <li key = {tag}>{tag}</li>)}
         </ul>
