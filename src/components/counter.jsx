@@ -20,6 +20,10 @@ class Counter extends Component {
         this.setState({value: this.state.value + 1});
     };
 
+    handleDecrement = x => {
+        this.setState ({value: this.state.value - 1});
+    };
+
     render() {  
         console.log('props', this.props);
         return (<React.Fragment>
@@ -29,6 +33,9 @@ class Counter extends Component {
         onClick={() => this.handleIncrement({value: this.state.value + 1})}
         className="btn btn-dark btn-sm"
         >Increment</button>
+        <button 
+        onClick={ () => this.handleDecrement(this.state.value === 0 ? <p>Cant decrease anymore</p> : {value: this.state.value - 1})}
+        className="btn-danger btn-sm m-2">Decrement</button>
         <ul>
             {this.state.tag.map(tag => <li key = {tag}>{tag}</li>)}
         </ul>
