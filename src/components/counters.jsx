@@ -36,7 +36,7 @@ class Counters extends Component {
         const counter = [...this.state.counter];
         const index = counter.indexOf(dec_handler);
         counter[index] = {...dec_handler};
-        if (this.state.counter.value > 0 || this.state.counter.allowNegative)
+        if ( counter[index].value > 0 || counter[index].allowNegative)
             {
                 counter[index].value--;
                 this.setState ({ counter });
