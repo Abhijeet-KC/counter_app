@@ -24,18 +24,28 @@ class Counters extends Component {
         this.setState({counter});
     };
 
-    handleIncrement = product => {
-        console.log(product);
-        this.setState({value: this.state.value + 1});
+    handleIncrement = inc_handler => {
+        const counter = [...this.state.counter];
+        const index = counter.indexOf(inc_handler);
+        counter[index] = {...inc_handler};
+        counter[index].value++; 
+        this.setState({ counter });
     };
 
-    handleDecrement = x => {
-        if (this.state.value > 0 || this.state.allowNegative)
-        this.setState ({value: this.state.value - 1});
+    handleDecrement = dec_handler => {
+        const counter = [...this.state.counter];
+        const index = counter.indexOf(dec_handler);
+        counter[index] = {...dec_handler};
+        if (this.state.counter.value > 0 || this.state.counter.allowNegative)
+            {
+                counter[index].value--;
+                this.setState ({ counter });
+
+            }
     };
 
     toggleAllowNegative = () => {
-        this.setState({allowNegative: !this.state.allowNegative})
+        this.setState({allowNegative: !this.state.counter.allowNegative})
     };
 
     render() { 
