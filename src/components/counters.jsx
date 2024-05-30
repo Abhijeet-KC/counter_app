@@ -44,8 +44,13 @@ class Counters extends Component {
             }
     };
 
-    toggleAllowNegative = () => {
-        this.setState({allowNegative: !this.state.counter.allowNegative})
+    toggleAllowNegative = neg_handler => {
+        const counter = [...this.state.counter];
+        const index = counter.indexOf(neg_handler);
+        counter[index] = {...neg_handler};
+        counter[index].allowNegative = !counter[index].allowNegative;
+        this.setState ({ counter });
+
     };
 
     render() { 

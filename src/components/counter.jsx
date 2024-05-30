@@ -34,12 +34,12 @@ class Counter extends Component {
         className="btn-dark btn-sm m-2"
         disabled={this.props.counter.value === 0  && !this.props.counter.allowNegative ? 'disabled' : ''}
         >Decrement</button>
-        
+
         <button onClick = {() => this.props.onDelete(this.props.counter.id)} className="btn-danger btn-sm mr-2">Delete</button>
 
         <input
             type = "checkbox"
-            onChange = {() => this.props.onToggle(this.props.counter.allowNegative)}
+            onChange = {() => this.props.onToggle(this.props.counter)}
             checked = {this.props.counter.allowNegative}
         />
         Allow Negative Count
